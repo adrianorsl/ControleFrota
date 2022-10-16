@@ -16,8 +16,15 @@ class Municoes extends Model
         return $this->belongsTo('App\Models\TipoMunicao');
     }
 
+    public function armas()
+    {
+        return $this->belongsToMany('App\Models\Armas','armas_ocor_municoes');
+               
+                                    
+    }
     public function ocorrencias()
     {
-        return $this->belongsToMany(Ocorrencia::class);
+        return $this->belongsToMany('App\Models\Ocorrencias','armas_ocor_municoes');
+                         
     }
 }

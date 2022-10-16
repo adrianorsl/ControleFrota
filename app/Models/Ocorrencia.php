@@ -23,7 +23,18 @@ class Ocorrencia extends Model
 
     public function armas()
     {
-        return $this->belongsToMany(Armas::class, 'armas_ocorrencias_municoes', 'armas_id' ,'ocorrencias_id');
+        return $this->belongsToMany('App\Models\Armas','armas_ocor_municoes');
+                    
+                                    
+    }
+    public function municoes()
+    {
+        return $this->belongsToMany('App\Models\Municoes','armas_ocor_municoes');                            
+    }
+
+    public function usuario()
+    {
+        return $this->belongsToMany('App\Models\Usuario','usuario_has_ocorrencias');
     }
     
 

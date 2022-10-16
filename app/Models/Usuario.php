@@ -16,5 +16,10 @@ class Usuario extends Model
     {
         return $this->belongsTo('App\Models\Cargo');
     }
+
+    public function ocorrencias()
+    {
+        return $this->belongsToMany('App\Models\Ocorrencia','usuario_has_ocorrencias');
+    }
 }
 

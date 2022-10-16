@@ -16,9 +16,22 @@ class Armas extends Model
         return $this->belongsTo('App\Models\TipoArma');
     }
 
-    public function armas_ocorrencias_municoes()
+    public function ocorrencias()
     {
-        return $this->belongsToMany(Armas::class);
+        return $this->belongsToMany('App\Models\Ocorrencia', 'armas_ocor_municoes');
+                   
+                                    
+    }
+    public function municoes()
+    {
+        return $this->belongsToMany('App\Models\Municoes', 'armas_ocor_municoes');
+                       
+    }
+
+    public function veiculo()
+    {
+        return $this->belongsToMany('App\Models\Veiculo', 'armas_has_veiculos');
+                       
     }
 
 

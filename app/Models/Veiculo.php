@@ -15,4 +15,10 @@ class Veiculo extends Model
     {
         return $this->hasMany('App\Models\Ocorrencia');
     }
+
+    public function armas()
+    {
+        return $this->belongsToMany('App\Models\Armas', 'armas_has_veiculos');
+                       
+    }
 }
