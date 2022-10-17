@@ -7,6 +7,7 @@ use App\Http\Controllers\TipoArmaController;
 use App\Http\Controllers\TipoMunicaoController;
 use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\ArmasController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::resource('/tipoArma', TipoArmaController::class);
 Route::resource('/tipoMunicao', TipoMunicaoController::class);
 Route::resource('/veiculo', VeiculoController::class);
 Route::resource('/arma', ArmasController::class);
+Route::resource('/usuario', UsuarioController::class);
 
 
 

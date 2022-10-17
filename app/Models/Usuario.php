@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome','user','pass'];
+    protected $fillable = ['nome','user','pass','cargo_id'];
     
 
     public function cargo()

@@ -15,6 +15,7 @@ class ArmasController extends Controller
     public function index()
     {
         //
+        $arma = new Armas();
         $tipoArma = array();
         if (request('find') != null)
         {
@@ -46,8 +47,8 @@ class ArmasController extends Controller
     public function store(Request $request)
     {
         //
-        $c = Armas::create($request->all());
-        return redirect()->route('armas.index');
+        $arma = Armas::create($request->all());
+        return redirect()->route('arma.index');
     }
 
     /**
@@ -60,7 +61,7 @@ class ArmasController extends Controller
     {
         //
         $armas = Armas::find($id);
-        return view('armas/show', ['armas'=>$armas]);
+        return view('arma.show', ['armas'=>$armas]);
     }
 
     /**
@@ -69,11 +70,12 @@ class ArmasController extends Controller
      * @param  \App\Models\Armas  $armas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Armas $armas)
     {
         //
-        $armas = Armas::find($id);
-        return view("armas.edit", ['armas'=>$armas]);
+        $armas = new Armas();
+        $armas = Armas::find($armas->id);
+        return view("arma.edit", ['armas'=>$armas]);
     }
 
     /**
@@ -83,11 +85,12 @@ class ArmasController extends Controller
      * @param  \App\Models\Armas  $armas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Armas $armas)
     {
         //
-        Armas::find($id)->update($request->all());
-        return redirect()->route('armas.index');
+        $armas = new Armas();
+        Armas::find($armas->id)->update($request->all());
+        return redirect()->route('arma.index');
     }
 
     /**
@@ -100,6 +103,6 @@ class ArmasController extends Controller
     {
         //
         Armas::destroy($id);
-        return redirect()->route('armas.index');
+        return redirect()->route('arma.index');
     }
 }

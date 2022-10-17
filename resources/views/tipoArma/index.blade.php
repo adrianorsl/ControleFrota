@@ -14,7 +14,7 @@
             <td><b>Excluir</b></td></tr>
 
             @foreach($tipoArma as $item)      
-                <tr><td>{{$item ->id}}</td>
+                <tr><td>{{$item->id}}</td>
                     <td>{{$item->nome}}</td>
                     
             <td><a href="{{ route('tipoArma.show', $item->id) }}"><button>Detalhes</button></a></td>

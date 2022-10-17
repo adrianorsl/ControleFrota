@@ -1,10 +1,10 @@
-<x-layout titulo="Nova Arma">
+<x-layout titulo="Tipo da Arma">
 
-    <form action=" {{ route('armas.store') }}" method="post">
+    <form action=" {{ route('tipoArma.store') }}" method="post">
         @method("POST")
         @csrf
 
-        @include('armas.form')
+        @include('tipoArma.form')
     </form>
 
 </x-layout>

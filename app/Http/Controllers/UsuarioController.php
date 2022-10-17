@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class UsuarioController extends Controller
 {
@@ -15,6 +16,16 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        $usuario = new Usuario();
+
+        if (request('find') != null)
+        {
+            $busca = request('find');
+            $usuario = Usuario::where('nome','like',"$busca%")->get();
+        }
+        else
+            $usuario = Usuario::all();
+        return view("usuario.index",['usuario'=>$usuario]);
     }
 
     /**
@@ -25,6 +36,7 @@ class UsuarioController extends Controller
     public function create()
     {
         //
+        return view("usuario.create");
     }
 
     /**
@@ -36,6 +48,8 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $usuario = Usuario::create($request->all());
+        return redirect()->route('usuario.index');
     }
 
     /**
@@ -81,5 +95,7 @@ class UsuarioController extends Controller
     public function destroy(Usuario $usuario)
     {
         //
+        Usuario::destroy($usuario->id);
+        return redirect()->route('usuario.index');
     }
 }

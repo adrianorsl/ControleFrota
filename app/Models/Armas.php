@@ -9,7 +9,7 @@ class Armas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['numero'];
+    protected $fillable = ['numero','tipo_id'];
 
     public function tipoArma()
     {
