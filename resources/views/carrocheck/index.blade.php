@@ -1,36 +1,37 @@
 <?php 
-    use App\Models\Cargo;
-    use App\Models\Usuario;
-    $cargo = new Cargo();
-    $cargo = Cargo::all();
-    $usuariio = new Usuario();
+    use App\Models\Carrocheck;
+    use App\Models\Condicao;
+    $condicao = new Condicao();
+    $concicao = Condicao::all();
+    $carrocheck = new Carrocheck();
+ 
 ?>
 
-<x-layout titulo="Usuarios">
-    <a href={{ route("usuario.create") }}>Adicionar</a>
+<x-layout titulo="carro check">
+    <a href={{ route("carrocheck.create") }}>Adicionar</a>
     <ul>
-        <form action="{{ route('usuario.index') }}" method="get">
+        <form action="{{ route('carrocheck.index') }}" method="get">
             @method('GET')
             <input type="text" name="find" id="find"><input type="submit" value="OK">
         </form>
         <table>
-        <tr><td><b>ID</b></td>
-            <td><b>Nome</b></td>
-            <td><b>Login</b></td>
-            <td><b>Cargo</b></td>
+        <tr><td><b>Ocorrencia</b></td>
+            <td><b>Capo</b></td>
+            <td><b>Paralama Dianteiro Esquerdo</b></td>
+            <td><b>Paralama Dianteiro Direito</b></td>
+            <td><b>Paralama Traseiro Esquerdo</b></td>
 
             <td><b>Detalhes</b></td>
             <td><b>Alterar</b></td>
             <td><b>Excluir</b></td></tr>
            
-            @foreach($usuario as $item)
-                <tr><td>{{$item->id}}</td>
-                    <td>{{$item->nome}}</td>
-                    <td>{{$item->login}}</td>
-                    <?php
-                        $cargo = Cargo::find($item->cargo_id);
-                    ?>
-                    <td>{{$cargo->descricao}}</td>
+            @foreach($carrocheck as $item)
+                <tr><td>{{$item->ocorrencia}}</td>
+                    <td>{{$item->capo}}</td>
+                    <td>{{$item->paralamaDianteiro_esq}}</td>
+                    <td>{{$item->paralamaDianteiro_dir}}</td>
+                    <td>{{$item->paralamaTraseiro_esq}}</td>
+                   
             
             <td><a href="{{ route('usuario.show', $item->id) }}"><button>Detalhes</button></a></td>
             <td><a href="{{ route('usuario.edit', $item->id) }}"><button>Editar</button></a></td>

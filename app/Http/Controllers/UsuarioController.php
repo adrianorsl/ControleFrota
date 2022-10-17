@@ -61,6 +61,8 @@ class UsuarioController extends Controller
     public function show(Usuario $usuario)
     {
         //
+        $usuario = Usuario::find($usuario->id);
+        return view('usuario.show', ['usuario'=>$usuario]);
     }
 
     /**
@@ -72,6 +74,8 @@ class UsuarioController extends Controller
     public function edit(Usuario $usuario)
     {
         //
+        $usuario = Usuario::find($usuario->id);
+        return view("usuario.edit", ['usuario'=>$usuario]);
     }
 
     /**
@@ -84,6 +88,8 @@ class UsuarioController extends Controller
     public function update(Request $request, Usuario $usuario)
     {
         //
+        Usuario::find($usuario->id)->update($request->all());
+        return redirect()->route('usuario.index');
     }
 
     /**

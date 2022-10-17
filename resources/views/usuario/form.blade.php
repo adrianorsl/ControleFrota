@@ -1,8 +1,10 @@
 <?php 
     use App\Models\Cargo;
     use App\Models\Usuario;
+    $cargo = new Cargo();
     $cargo = Cargo::all();
     $usuariio = new Usuario(); 
+
 ?>
 
 <label for="id">ID</label>
@@ -18,16 +20,21 @@ value="@if (isset($usuario->nome)) {{ $usuario->nome }} @endif" ><br>
 value="@if (isset($usuario->user)) {{ $usuario->user}} @endif" ><br>
 
 <label for="pass">Senha</label>
-<input type="passoword" name="pass" id="pass"
+<input type="password" name="pass" id="pass"
 value="@if (isset($usuario->pass)) {{ $usuario->pass}} @endif" ><br>
 
 <label for="cargo_id">Cargo</label>
-<select type="number" name="cargo_id" id="cargo_id"
-value="@if (isset($usuario->cargo_id)) {{ $usuario->cargo_id}} @endif" 
-        @foreach($cargo as $item) {
-            {{'<option value="'.$item->id.'">'.$item->nome.'</option>'}}
-        }@endforeach
-><br>
+<select type="text" name="cargo_id" id="cargo_id">
+    @foreach($cargo as $item)    
+        <option value="{{$item->id}}"
+            @if(isset($usuario->codigo_id) )
+            {{'selected'}}
+            @endif>
+            {{$item->descricao}}                                                       
+        </option>  
+        @endforeach 
+</select>
+<br>
 
 <button type="submit" name="acao" value="salvar"
 id="acao"> @if(isset($usuario->nome)) Alterar @else Salvar @endif

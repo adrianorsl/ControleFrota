@@ -1,16 +1,10 @@
-<?php 
-    use App\Models\TipoArma;
-    use App\Models\Armas;
-    $tipoArma = TipoArma::all();
-    $armas = new Armas();
-?>
 
-<x-layout titulo="Armas">
+<x-layout titulo="Usuarios">
     <ul>
-        <form action= "{{ route('arma.update', $armas->id) }}" method="post">
+        <form action= "{{ route('usuario.update', $usuario) }}" method="post">
             @method("PATCH")
             @csrf
-            @include('armas.form')
+            @include('usuario.form')
 
         </form>
     </ul>
