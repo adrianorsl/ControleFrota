@@ -1,0 +1,10 @@
+=> [34;4mApp\Models\Usuario[39;24m {#4559
+     [34mid[39m: [35m1[39m,
+     [34mnome[39m: "[32mRobson[39m",
+     [34muser[39m: "[32mRobson[39m",
+     [34mpass[39m: "[32mRobson[39m",
+     [34mcreated_at[39m: "[32m2022-09-26 11:37:52[39m",
+     [34mupdated_at[39m: "[32m2022-09-26 11:37:52[39m",
+     [34mcargo_id[39m: [35m2[39m,
+   }
+
