@@ -1,6 +1,7 @@
 <?php 
     use App\Models\TipoArma;
     use App\Models\Armas;
+    $tipoArma = new TipoArma();
     $tipoArma = TipoArma::all();
     $armas = new Armas();
 ?>
@@ -15,8 +16,14 @@ value="@if (isset($armas->id)) {{ $armas = Armas::id($id) }} @endif" disabled><b
 value="@if (isset($armas->numero)) {{ $armas = Armas::numero(numero) }} @endif" ><br>
 
 <label for="tipo_id">Tipo da Arma</label>
-<input type="number" name="tipo_id" id="tipo_id"
-value="@if (isset($armas->tipo_id)) {{ $armas->tipo_id}} @endif" ><br>
+<select type="text" name="tipo_id" id="tipo_id">
+    @foreach($tipoArma as $item)    
+        <option value="{{$item->id}}">
+            {{$item->nome}}                                                       
+        </option>  
+        @endforeach 
+</select>
+<br>
 
 <button type="submit" name="acao" value="salvar"
 id="acao"> @if(isset($armas->numero)) Alterar @else Salvar @endif
