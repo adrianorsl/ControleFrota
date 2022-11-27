@@ -19,7 +19,7 @@ class TipoArmaController extends Controller
         if (request('find') != null)
         {
             $busca = request('find');
-            $tipoArma = TipoArma::where('nome','like',"$busca%")->get();
+            $tipoArma = TipoArma::where('nome','like',"$busca%")->paginate(2);
         }
         else
             $tipoArma = TipoArma::paginate(5);

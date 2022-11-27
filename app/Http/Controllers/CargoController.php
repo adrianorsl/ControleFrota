@@ -19,10 +19,10 @@ class CargoController extends Controller
             if (request('find') != null)
             {
                 $busca = request('find');
-                $cargo = Cargo::where('descricao','like',"$busca%")->get();
+                $cargo = Cargo::where('descricao','like',"$busca%")->paginate(3);
             }
             else
-                $cargo = Cargo::all();
+                $cargo = Cargo::paginate(2);
         return view("cargo.index",['cargo'=>$cargo]);
     }
 

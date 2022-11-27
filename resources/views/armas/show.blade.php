@@ -29,8 +29,6 @@
                 @csrf
                 <button type="submit" class="btn btn-danger">Excluir</button>
             </tr>
-
-       
-
+    </div>
     </ul>
 </x-layout>
