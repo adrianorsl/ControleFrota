@@ -22,7 +22,7 @@ class CreateArmasHasVeiculosTable extends Migration
             $table->unsignedBigInteger('veiculo_id');
             $table->foreign('veiculo_id')->references('id')->on('veiculos')->onDelete('cascade');
         
-            $table->primary(['armasid','veiculo_id']);
+            $table->primary(['armas_id','veiculo_id']);
         });
     }
 

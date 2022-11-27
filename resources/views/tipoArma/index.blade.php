@@ -1,3 +1,4 @@
+
 <x-layout titulo="Tipo das Armas">
     <a href={{ route("tipoArma.create") }}>Adicionar</a>
     <ul>
@@ -27,4 +28,5 @@
                 </form></td></tr>       
             @endforeach
     </ul>
+    
 </x-layout>

@@ -15,14 +15,14 @@ class CargoController extends Controller
     public function index()
     {
         //
-        $cargo = array();
-        if (request('find') != null)
-        {
-            $busca = request('find');
-            $cargo = Cargo::where('descricao','like',"$busca%")->get();
-        }
-        else
-            $cargo = Cargo::all();
+            $cargo = array();
+            if (request('find') != null)
+            {
+                $busca = request('find');
+                $cargo = Cargo::where('descricao','like',"$busca%")->get();
+            }
+            else
+                $cargo = Cargo::all();
         return view("cargo.index",['cargo'=>$cargo]);
     }
 

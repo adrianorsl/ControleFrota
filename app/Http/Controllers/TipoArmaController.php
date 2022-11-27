@@ -22,7 +22,7 @@ class TipoArmaController extends Controller
             $tipoArma = TipoArma::where('nome','like',"$busca%")->get();
         }
         else
-            $tipoArma = TipoArma::all();
+            $tipoArma = TipoArma::paginate(5);
         return view("tipoArma.index",['tipoArma'=>$tipoArma]);
     }
 

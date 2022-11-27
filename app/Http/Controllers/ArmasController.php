@@ -15,15 +15,14 @@ class ArmasController extends Controller
     public function index()
     {
         //
-        $arma = new Armas();
-        $tipoArma = array();
-        if (request('find') != null)
-        {
-            $busca = request('find');
-            $arma = Armas::where('numero','like',"$busca%")->get();
-        }
-        else
-            $arma = Armas::all();
+            if (request('find') != null)
+            {
+                $busca = request('find');
+                $arma = Armas::where('numero','like',"$busca%")->paginate(5);
+            
+            }
+            else
+                $arma = Armas::paginate(10);
         return view("armas.index",['armas'=>$arma]);
     }
 
@@ -47,6 +46,7 @@ class ArmasController extends Controller
     public function store(Request $request)
     {
         //
+       
         $arma = Armas::create($request->all());
         return redirect()->route('arma.index');
     }
@@ -61,7 +61,7 @@ class ArmasController extends Controller
     {
         //
         $armas = Armas::find($id);
-        return view('arma.show', ['armas'=>$armas]);
+        return view('armas.show', ['armas'=>$armas]);
     }
 
     /**
@@ -70,12 +70,11 @@ class ArmasController extends Controller
      * @param  \App\Models\Armas  $armas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Armas $armas)
+    public function edit($id)
     {
         //
-        $armas = new Armas();
-        $armas = Armas::find($armas->id);
-        return view("arma.edit", ['armas'=>$armas]);
+        $armas = Armas::find($id);
+        return view("armas.edit", ['armas'=>$armas]);
     }
 
     /**
@@ -85,11 +84,10 @@ class ArmasController extends Controller
      * @param  \App\Models\Armas  $armas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Armas $armas)
+    public function update(Request $request, $id)
     {
         //
-        $armas = new Armas();
-        Armas::find($armas->id)->update($request->all());
+        Armas::find($id)->update($request->all());
         return redirect()->route('arma.index');
     }
 

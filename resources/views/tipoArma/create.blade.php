@@ -3,7 +3,7 @@
     <form action=" {{ route('tipoArma.store') }}" method="post">
         @method("POST")
         @csrf
-
+        
         @include('tipoArma.form')
     </form>
 
