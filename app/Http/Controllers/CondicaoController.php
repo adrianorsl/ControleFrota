@@ -19,10 +19,10 @@ class CondicaoController extends Controller
         if (request('find') != null)
         {
             $busca = request('find');
-            $condicao = Condicao::where('nome','like',"$busca%")->get();
+            $condicao = Condicao::where('nome','like',"$busca%")->paginate(5);
         }
         else
-            $condicao = Condicao::all();
+            $condicao = Condicao::paginate(10);
         return view("condicao.index",['condicao'=>$condicao]);
     }
 

@@ -9,13 +9,9 @@ class Armas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['numero','tipo_id'];
+    protected $fillable = ['numero', 'nome'];
 
-    public function tipoArma()
-    {
-        return $this->belongsTo('App\Models\TipoArma');
-    }
-
+   
     public function ocorrencias()
     {
         return $this->belongsToMany('App\Models\Ocorrencia', 'armas_ocor_municoes');

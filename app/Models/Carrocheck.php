@@ -9,13 +9,14 @@ class Carrocheck extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ocorrencia_id','capo','paralamaDianteiro_esq','paralamaDianteiro_dir', 'paralamaTraseiro_esq',
+    protected $fillable = ['id','capo','paralamaDianteiro_esq','paralamaDianteiro_dir', 'paralamaTraseiro_esq',
     'paralamaTraseiro_dir','parachoqueDianteiro','portaDianteira_esq','portaDianteira_dir','portaTraseira_esq',
-    'portaTraseira_dir','luzDianteira','luzTraseira','parachoqueTraseiro','giroflex','vidro','interno',
+    'portaTraseira_dir','luzDianteira','luzTraseira','parachoqueTraseiro','capoTraseiro','giroflex','vidro','interno',
     'impressora','smartphone','motor'];
 
     public function ocorrencia()
     {
         return $this->belongsTo('App\Models\Ocorrencia');
     }
+    
 }

@@ -5,28 +5,37 @@
 
 
 <x-layout titulo="Usuario">
-    <ul>
-        <label for="id">ID</label>
-        <input type="text" name="id" id="id"
-        value="{{ $usuario->id }}" disabled><br>
-        <label for="nome">Nome</label>
-        <input type="text" name="nome" id="nome"
-        value="{{ $usuario->nome }} "><br>
-        <label for="user">Usuario</label>
-        <input type="text" name="user" id="user"
-        value="{{ $usuario->user }} "><br>
-        <label for="pass">Senha</label>
-        <input type="password" name="pass" id="pass"
-        value="{{ $usuario->pass }} "><br>
-        <label for="cargo_id">Cargo id</label>
-        <input type="text" name="cargo_id" id="cargo_id"
-        value="{{ $usuario->cargo_id }} "><br>
-        <?php $cargo = Cargo::find($usuario->cargo_id) ?>
-        <label for="descricao">Descrição</label>
-        <input type="text" name="descricao" id="descricao"
-        value="{{ $cargo->descricao }} "><br>
-        
-        <a href="{{ route('usuario.edit', $usuario->id) }}"><button>Editar</button></a>
-
+<ul>
+    <div class="py-4">
+        <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Cargo ID</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Alterar</th>
+                <th scope="col">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{ $usuario->id }}</th>
+                <td>{{ $usuario->nome }}</td>
+                <td>{{ $usuario->user }}</td>
+                <td>{{ $usuario->pass }}</td>
+                <td>{{ $usuario->cargo_id }}</td>
+                <?php $cargo = Cargo::find($usuario->cargo_id) ?>
+                <td>{{ $cargo->descricao }}</td>
+                <td><a href="{{ route('usuario.edit', $usuario->id) }}"><button type="button" class="btn btn-warning">Editar</button></a></td>
+                <td><form id="form_delete" name="form_delete" action="{{ route('usuario.destroy', $usuario->id)}}" 
+                method="post" onsubmit="return confirm('Tem certeza que deseja excluir este registro?')">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger">Excluir</button>
+            </tr>
+    </div>
     </ul>
 </x-layout>

@@ -19,10 +19,10 @@ class VeiculoController extends Controller
         if (request('find') != null)
         {
             $busca = request('find');
-            $veiculo = Veiculo::where('numero','like',"$busca%")->get();
+            $veiculo = Veiculo::where('numero','like',"$busca%")->paginate(5);
         }
         else
-            $veiculo = Veiculo::all();
+            $veiculo = Veiculo::paginate(10);
         return view("veiculo.index",['veiculo'=>$veiculo]);
     }
 

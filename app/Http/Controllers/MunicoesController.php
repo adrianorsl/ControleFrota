@@ -15,6 +15,15 @@ class MunicoesController extends Controller
     public function index()
     {
         //
+        if (request('find') != null)
+            {
+                $busca = request('find');
+                $municoes = Municoes::where('id','like',"$busca%")->paginate(5);
+            
+            }
+            else
+                $municoes = Municoes::paginate(10);
+        return view("municoes.index",['municoes'=>$municoes]);
     }
 
     /**
@@ -25,6 +34,7 @@ class MunicoesController extends Controller
     public function create()
     {
         //
+        return view("municoes.create");
     }
 
     /**
@@ -36,6 +46,8 @@ class MunicoesController extends Controller
     public function store(Request $request)
     {
         //
+        $municoes = Municoes::create($request->all());
+        return redirect()->route('municoes.index');
     }
 
     /**
@@ -44,9 +56,11 @@ class MunicoesController extends Controller
      * @param  \App\Models\Municoes  $municoes
      * @return \Illuminate\Http\Response
      */
-    public function show(Municoes $municoes)
+    public function show($id)
     {
         //
+        $municoes = municoes::find($id);
+        return view('municoes.show', ['municoes'=>$municoes]);
     }
 
     /**
@@ -55,9 +69,11 @@ class MunicoesController extends Controller
      * @param  \App\Models\Municoes  $municoes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Municoes $municoes)
+    public function edit($id)
     {
         //
+        $municoes = Municoes::find($id);
+        return view('municoes.edit', ['municoes'=>$municoes]);
     }
 
     /**
@@ -67,9 +83,11 @@ class MunicoesController extends Controller
      * @param  \App\Models\Municoes  $municoes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Municoes $municoes)
+    public function update(Request $request, $id)
     {
         //
+        Municoes::find($id)->update($request->all());
+        return redirect()->route('municoes.index');
     }
 
     /**
@@ -78,8 +96,10 @@ class MunicoesController extends Controller
      * @param  \App\Models\Municoes  $municoes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Municoes $municoes)
+    public function destroy($id)
     {
         //
+        Municoes::destroy($id);
+        return redirect()->route('municoes.index');
     }
 }

@@ -8,6 +8,9 @@ use App\Http\Controllers\TipoMunicaoController;
 use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\ArmasController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\OcorrenciaController;
+use App\Http\Controllers\CarrocheckController;
+use App\Http\Controllers\MunicoesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +24,24 @@ use App\Http\Controllers\UsuarioController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/home');
 });
+
+Route::get('/carrocheck', function ($id) {
+    return view('carrocheck.create', ['id' => $id]);
+});
+
 
 Route::resource('/condicao', CondicaoController::class);
 Route::resource('/cargo', CargoController::class);
 Route::resource('/tipoArma', TipoArmaController::class);
 Route::resource('/tipoMunicao', TipoMunicaoController::class);
+Route::resource('/municoes', MunicoesController::class);
 Route::resource('/veiculo', VeiculoController::class);
 Route::resource('/arma', ArmasController::class);
 Route::resource('/usuario', UsuarioController::class);
+Route::resource('/ocorrencia', OcorrenciaController::class);
+Route::resource('/carrocheck', CarrocheckController::class);
 
 
 

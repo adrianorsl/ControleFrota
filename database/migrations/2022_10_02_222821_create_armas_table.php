@@ -16,9 +16,8 @@ class CreateArmasTable extends Migration
         Schema::create('armas', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
+            $table->string('nome', 64);
             $table->timestamps();
-            $table->unsignedBigInteger('tipo_id');
-            $table->foreign('tipo_id')->references('id')->on('tipo_armas');
         });
     }
 

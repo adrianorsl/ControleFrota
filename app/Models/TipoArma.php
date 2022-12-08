@@ -11,8 +11,5 @@ class TipoArma extends Model
 
     protected $fillable = ['nome'];
 
-    public function armas()
-    {
-        return $this->hasMany('App\Models\Armas');
-    }
+    
 }

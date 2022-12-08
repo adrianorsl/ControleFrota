@@ -1,7 +1,5 @@
 <?php 
-    use App\Models\TipoArma;
     use App\Models\Armas;
-    $tipoArma = TipoArma::all();
 ?>
 
 <div class="mb-3">
@@ -17,33 +15,9 @@ value="@if (isset($armas->numero)) {{ $armas->numero }} @endif" >
 </div>
 
 <div class="mb-3">
-<label for="tipo_id">Tipo da Arma</label>
-<select type="text" class="form-control" name="tipo_id" id="tipo_id">
-    @if(empty($_POST))
-        @foreach($tipoArma as $item)    
-            <option value="{{$item->id}}">
-                {{$item->nome}}                                                       
-            </option>  
-        @endforeach 
-    @else
-        <?php
-            $tipoArma2 = TipoArma::find($armas->tipo_id);
-            $array = array($tipoArma2);
-            foreach($tipoArma as $item){
-                if($item->id == $armas->tipo_id){
-
-                }else{
-                    array_push($array, $item);
-                }
-            }
-        ?>
-        @foreach($array as $item)    
-            <option value="{{$item->id}}">
-                {{$item->nome}}                                                       
-            </option>  
-        @endforeach 
-    @endif
-</select>
+<label for="nome">Tipo da Arma</label>
+<input type="text" class="form-control" name="nome" id="nome"
+value= "@if (isset($armas->nome)) {{ $armas->nome }} @endif" >
 </div>
 
 <button type="submit" class="btn btn-warning" name="acao" value="salvar"

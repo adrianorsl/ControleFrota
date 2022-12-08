@@ -20,8 +20,7 @@
             <tr>
                 <th scope="row">{{ $armas->id }}</th>
                 <td>{{ $armas->numero }}</td>
-                <?php $tipoArma = TipoArma::find($armas->tipo_id) ?>
-                <td>{{ $tipoArma->nome }}</td>
+                <td>{{ $armas->nome }}</td>
                 <td><a href="{{ route('arma.edit', $armas->id) }}"><button type="button" class="btn btn-warning">Editar</button></a></td>
                 <td><form id="form_delete" name="form_delete" action="{{ route('arma.destroy', $armas->id)}}" 
                 method="post" onsubmit="return confirm('Tem certeza que deseja excluir este registro?')">

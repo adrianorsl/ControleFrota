@@ -19,10 +19,10 @@ class TipoMunicaoController extends Controller
         if (request('find') != null)
         {
             $busca = request('find');
-            $tipoMunicao = TipoMunicao::where('descricao','like',"$busca%")->get();
+            $tipoMunicao = TipoMunicao::where('descricao','like',"$busca%")->paginate(1);
         }
         else
-            $tipoMunicao = TipoMunicao::all();
+            $tipoMunicao = TipoMunicao::paginate(2);
         return view("tipoMunicao.index",['tipoMunicao'=>$tipoMunicao]);
     }
 

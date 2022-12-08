@@ -9,7 +9,7 @@ class Municoes extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['quantidade'];
+    protected $fillable = ['quantidade', 'tipoMunicoes_id'];
 
     public function tipoMunicao()
     {

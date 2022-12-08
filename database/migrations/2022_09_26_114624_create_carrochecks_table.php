@@ -14,9 +14,9 @@ class CreateCarrochecksTable extends Migration
     public function up()
     {
         Schema::create('carrochecks', function (Blueprint $table) {
-            $table->unsignedBigInteger('ocorrencia_id');
-            $table->foreign('ocorrencia_id')->references('id')->on('ocorrencias');
-            $table->primary('ocorrencia_id');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('ocorrencias');
+            $table->primary('id');
             $table->integer('capo');
             $table->integer('paralamaDianteiro_esq');
             $table->integer('paralamaDianteiro_dir');
@@ -30,6 +30,7 @@ class CreateCarrochecksTable extends Migration
             $table->integer('luzDianteira');
             $table->integer('luzTraseira');
             $table->integer('parachoqueTraseiro');
+            $table->integer('capoTraseiro');
             $table->integer('giroflex');
             $table->integer('vidro');
             $table->integer('interno');

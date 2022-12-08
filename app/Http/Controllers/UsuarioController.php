@@ -21,10 +21,10 @@ class UsuarioController extends Controller
         if (request('find') != null)
         {
             $busca = request('find');
-            $usuario = Usuario::where('nome','like',"$busca%")->get();
+            $usuario = Usuario::where('nome','like',"$busca%")->paginate(4);
         }
         else
-            $usuario = Usuario::all();
+            $usuario = Usuario::paginate(10);
         return view("usuario.index",['usuario'=>$usuario]);
     }
 

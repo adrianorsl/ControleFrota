@@ -9,7 +9,7 @@ class Ocorrencia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['dataInicio', 'dataFim'];
+    protected $fillable = ['dataInicio', 'dataFim', 'veiculo_id'];
 
     public function carrocheck()
     {

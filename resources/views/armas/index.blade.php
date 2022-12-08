@@ -1,7 +1,4 @@
-<?php
-    use App\Models\TipoArma;
-    $tipoArma = TipoArma::all();   
-?>
+
 
 <x-layout titulo="Armas">
     <a href= {{ route('arma.create') }} class="btn btn-primary"> Adicionar</a>
@@ -27,10 +24,7 @@
             @foreach($armas as $item)
                 <tr><td>{{$item->id}}</td>
                     <td>{{$item->numero}}</td>
-                    <?php
-                        $tipoArma = TipoArma::find($item->tipo_id);
-                    ?>
-                    <td>{{$tipoArma->nome}}</td>
+                    <td>{{$item->nome}}</td>
             
             <td><a href="{{ route('arma.show', $item->id) }}"><button type="button" class="btn btn-info">Detalhes</button></a></td>
             <td><a href="{{ route('arma.edit', $item->id) }}"><button type="button" class="btn btn-warning">Editar</button></a></td>

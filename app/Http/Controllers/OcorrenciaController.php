@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrocheck;
 use App\Models\Ocorrencia;
+use App\Models\Usuario_has_ocorrencia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CarrocheckController;
 
 class OcorrenciaController extends Controller
 {
@@ -15,6 +18,15 @@ class OcorrenciaController extends Controller
     public function index()
     {
         //
+        if (request('find') != null)
+            {
+                $busca = request('find');
+                $ocorrencia = Ocorrencia::where('datainicio','like',"$busca%")->paginate(5);
+            
+            }
+            else
+                $ocorrencia = Ocorrencia::paginate(10);
+        return view("ocorrencia.index",['ocorrencia'=>$ocorrencia]);
     }
 
     /**
@@ -25,6 +37,7 @@ class OcorrenciaController extends Controller
     public function create()
     {
         //
+        return view("ocorrencia.create");
     }
 
     /**
@@ -36,6 +49,9 @@ class OcorrenciaController extends Controller
     public function store(Request $request)
     {
         //
+        $ocorrencia = Ocorrencia::create($request->all());
+        
+        return redirect()->route('carrocheck.create', ['id'=>$ocorrencia->id]);
     }
 
     /**
@@ -44,9 +60,11 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Ocorrencia $ocorrencia)
+    public function show($id)
     {
         //
+        $ocorrencia = Ocorrencia::find($id);
+        return view('ocorrencia.show', ['ocorrencia'=>$ocorrencia]);
     }
 
     /**
@@ -55,9 +73,11 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ocorrencia $ocorrencia)
+    public function edit($id)
     {
         //
+        $ocorrencia = Ocorrencia::find($id);
+        return view("ocorrencia.edit", ['ocorrencia'=>$ocorrencia]);
     }
 
     /**
@@ -67,9 +87,11 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ocorrencia $ocorrencia)
+    public function update(Request $request, $id)
     {
         //
+        Ocorrencia::find($id)->update($request->all());
+        return redirect()->route('ocorrencia.index');
     }
 
     /**
@@ -78,8 +100,10 @@ class OcorrenciaController extends Controller
      * @param  \App\Models\Ocorrencia  $ocorrencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ocorrencia $ocorrencia)
+    public function destroy($id)
     {
         //
+        Ocorrencia::destroy($id);
+        return redirect()->route('ocorrencia.index');
     }
 }
