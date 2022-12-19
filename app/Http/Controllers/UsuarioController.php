@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 
 class UsuarioController extends Controller
@@ -48,8 +50,13 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
-        $usuario = Usuario::create($request->all());
-        return redirect()->route('usuario.index');
+        $data = $request->all();
+        $data['pass'] = Hash::make($data['pass']);
+
+        $usuario = Usuario::create($data);
+
+        Auth::login($usuario);
+        return redirect()->route('ocorrencia.index');
     }
 
     /**

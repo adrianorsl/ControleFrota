@@ -18,7 +18,7 @@
 ?>
 
 <div class="mb-3">
-<label for="usuario_id">Usuario</label>
+<label for="usuario_id">Motorista</label>
 <select type="text" class="form-control" name="usuario_id" id="usuario_id">
     @foreach($usuario as $item)    
         <option value="{{$item->id}}"

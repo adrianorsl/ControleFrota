@@ -4,143 +4,118 @@
 
 
 ?>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <x-layout titulo="Carro check">
+  <body>
+    @foreach($carrocheck as $item)
     <a href={{ route("carrocheck.create") }} class="btn btn-primary" >Adicionar</a>
+    <a href="{{ route('carrocheck.show', $item->id) }}"><button type="button" class="btn btn-info">Detalhes</button></a>
+    <a><form id="form_delete" name="form_delete" action="{{ route('carrocheck.destroy', $item->id)}}" 
+                method="post" onsubmit="return confirm('Tem certeza que deseja excluir este registro?')">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger">Excluir</button>
+                </form></a>  
+    @endforeach
         <div class="py-4">
             <form action="{{ route('carrocheck.index') }}" method="get">
                 @method('GET')
                 <input type="text" name="find" id="find"><input type="submit" value="OK">
             </form>
         </div>
-    <div class="py-4">
-        <table class="table table-success table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Ocorrencia</th>
-                <th scope="col">Capo</th>
-                <th scope="col">Paralama Dianteiro Esquerdo</th>
-                <th scope="col">Paralama Dianteiro Direito</th>
-                <th scope="col">Paralama Traseiro Esquerdo</th>
-                <th scope="col">Paralama Traseiro Direito</th>
-                <th scope="col">Parachoque Dianteiro</th>
-                <th scope="col">Porta Dianteira Esquerda</th>
-                <th scope="col">Porta Dianteira Direita</th>
-                <th scope="col">Porta Traseira Esquerda</th>
-                <th scope="col">Porta Traseira Direita</th>
-                <th scope="col">Luzes Dianteira</th>
-                <th scope="col">Luzes Traseira</th>
-                <th scope="col">Parachoque Traseiro</th>
-                <th scope="col">Capo Traseiro</th>
-                <th scope="col">GiroFlex</th>
-                <th scope="col">Vidros</th>
-                <th scope="col">Interno</th>
-                <th scope="col">Impressora</th>
-                <th scope="col">Smartphone</th>
-                <th scope="col">Motor</th>
-                <th scope="col">Detalhes</th>
-                <th scope="col">Excluir</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($carrocheck as $item)
-                <tr><td>{{$item->id}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->capo);
-                    ?>
-                    <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->paralamaDianteiro_esq);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->paralamaDianteiro_dir);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->paralamaTraseiro_esq);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->paralamaTraseiro_dir);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->parachoqueDianteiro);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->portaDianteira_esq);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->portaDianteira_dir);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->portaTraseira_esq);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->portaTraseira_dir);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->luzDianteira);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->luzTraseira);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->parachoqueTraseiro);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->capoTraseiro);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->giroflex);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->vidro);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->interno);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->impressora);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->smartphone);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-                    <?php
-                        $condicao = Condicao::find($item->motor);
-                    ?>
-                      <td>{{$condicao->nome}}</td>
-
-                   
-            
-            <td><a href="{{ route('carrocheck.show', $item->id) }}"><button type="button" class="btn btn-info">Detalhes</button></a></td>
-            <td><form id="form_delete" name="form_delete" action="{{ route('carrocheck.destroy', $item->id)}}" 
-                method="post" onsubmit="return confirm('Tem certeza que deseja excluir este registro?')">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="btn btn-danger">Excluir</button>
-                </form></td></tr>    
-            @endforeach
-        </tbody>
-        </table>       
+</body>
+    <body class="p-3 m-0 border-0 bd-example bd-example-row">
+    <div class="container text-center">
+      <div class="row">
+      @foreach($carrocheck as $item)
+        <div class="col-6 col-sm-3">Ocorrencia: {{$item->id}}</div>
+          <?php
+            $condicao = Condicao::find($item->capo);
+          ?>
+        <div class="col-6 col-sm-3">Capo: {{$condicao->nome}}</div>
+          <?php
+            $condicao = Condicao::find($item->paralamaDianteiro_esq);
+          ?>
+        <div class="col-6 col-sm-3">Paralama Dianteiro Esquerdo: {{$condicao->nome}}</div>
+          <?php
+            $condicao = Condicao::find($item->paralamaDianteiro_dir);
+          ?>
+        <div class="col-6 col-sm-3">Paralama Dianteiro Direito: {{$condicao->nome}}</div>
+          <?php
+            $condicao = Condicao::find($item->paralamaTraseiro_esq);
+          ?>
+        <div class="col-6 col-sm-3">Paralama Traseiro Esquerdo: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->paralamaTraseiro_dir);
+          ?>
+        <div class="col-6 col-sm-3">Paralama Traseiro Direito: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->parachoqueDianteiro);
+          ?>
+        <div class="col-6 col-sm-3">Parachoque Dianteiro: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->portaDianteira_esq);
+          ?>
+        <div class="col-6 col-sm-3">Porta Dianteira Esquerda: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->portaDianteira_dir);
+          ?>
+        <div class="col-6 col-sm-3">Porta Dianteira Direita: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->portaTraseira_esq);
+          ?>
+        <div class="col-6 col-sm-3">Porta Traseira Esquerda: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->portaTraseira_dir);
+          ?>
+        <div class="col-6 col-sm-3">Porta Traseira Direita: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->luzDianteira);
+          ?>
+        <div class="col-6 col-sm-3">Luzes Dianteira: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->luzTraseira);
+          ?>
+        <div class="col-6 col-sm-3">Luzes Traseira: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->parachoqueTraseiro);
+          ?>
+        <div class="col-6 col-sm-3">Parachoque Traseiro: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->capoTraseiro);
+          ?>
+        <div class="col-6 col-sm-3">Capo Traseiro: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->giroflex);
+          ?>
+        <div class="col-6 col-sm-3">GiroFlex: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->vidro);
+          ?>
+        <div class="col-6 col-sm-3">Vidros: {{$condicao->nome}}</div>
+        <?php
+            $condicao = Condicao::find($item->interno);
+          ?>
+        <div class="col-6 col-sm-3">Interno: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->impressora);
+          ?>
+        <div class="col-6 col-sm-3">Impressora: {{$condicao->nome}}</div>
+        <?php
+            $condicao = Condicao::find($item->smartphone);
+          ?>
+        <div class="col-6 col-sm-3">Smartphone: {{$condicao->nome}}</div>
+         <?php
+            $condicao = Condicao::find($item->motor);
+          ?>
+        <div class="col-6 col-sm-3">Motor: {{$condicao->nome}}</div>
+      @endforeach    
     </div> 
         {{ $carrocheck ?? ''->appends([
             'find' => request()->get('find','')
         ])->links() }}
     </ul>
+        </body>
 </x-layout>

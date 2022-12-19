@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Autenticador;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CondicaoController;
 use App\Http\Controllers\CargoController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\OcorrenciaController;
 use App\Http\Controllers\CarrocheckController;
 use App\Http\Controllers\MunicoesController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,21 +30,20 @@ Route::get('/', function () {
     return view('/home');
 });
 
-Route::get('/carrocheck', function ($id) {
-    return view('carrocheck.create', ['id' => $id]);
-});
+Route::resource('/condicao', CondicaoController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/cargo', CargoController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/tipoArma', TipoArmaController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/tipoMunicao', TipoMunicaoController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/municoes', MunicoesController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/veiculo', VeiculoController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/arma', ArmasController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/usuario', UsuarioController::class)->middleware(App\Http\Middleware\Autenticador::class);;
+Route::resource('/ocorrencia', OcorrenciaController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::resource('/carrocheck', CarrocheckController::class)->middleware(App\Http\Middleware\Autenticador::class);
+Route::get('/login', [LoginController::class, 'index'])->name(name: 'login');
+Route::post('/login', [LoginController::class, 'store'])->name(name: 'signin');
+Route::get('/logout', [LoginController::class, 'destroy'])->name(name: 'logout');
 
-
-Route::resource('/condicao', CondicaoController::class);
-Route::resource('/cargo', CargoController::class);
-Route::resource('/tipoArma', TipoArmaController::class);
-Route::resource('/tipoMunicao', TipoMunicaoController::class);
-Route::resource('/municoes', MunicoesController::class);
-Route::resource('/veiculo', VeiculoController::class);
-Route::resource('/arma', ArmasController::class);
-Route::resource('/usuario', UsuarioController::class);
-Route::resource('/ocorrencia', OcorrenciaController::class);
-Route::resource('/carrocheck', CarrocheckController::class);
-
-
+Route::get('/register', [UsersController::class, 'create'])->name(name: 'users.create');
+Route::post('/register', [UsersController::class, 'store'])->name(name: 'users.store');
 

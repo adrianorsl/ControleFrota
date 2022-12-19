@@ -3,7 +3,7 @@
     use App\Models\Usuario;
     $cargo = new Cargo();
     $cargo = Cargo::all();
-    $usuariio = new Usuario(); 
+    $usuario = new Usuario(); 
 
 ?>
 

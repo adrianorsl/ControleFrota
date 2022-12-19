@@ -20,11 +20,11 @@ class CarrocheckController extends Controller
         if (request('find') != null)
             {
                 $busca = request('find');
-                $carrocheck = Carrocheck::where('id','like',"$busca%")->paginate(5);
+                $carrocheck = Carrocheck::where('id','like',"$busca%")->paginate(1);
             
             }
             else
-                $carrocheck = Carrocheck::paginate(10);
+                $carrocheck = Carrocheck::paginate(1);
         return view("carrocheck.index",['carrocheck'=>$carrocheck]);
     }
 
